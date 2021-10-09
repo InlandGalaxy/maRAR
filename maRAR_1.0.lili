@@ -1,0 +1,63 @@
+from tkinter import *
+#from tkinter.filedialog import askopenfilenames 
+from tkinter import filedialog
+from zipfile import ZipFile 
+
+root = Tk() 
+root.geometry('400x300')
+root.title("maRAR 1.0")
+root.configure(bg='black')
+#root.wm_iconbitmap("ING_jk4.ico")
+
+def select_file():
+  global file_names
+  file_names = filedialog.askopenfilenames(initialdir = "/",title = "Select File",
+            defaultextension=".zip",
+            filetypes=[("ZIP Archives","*.zip"),
+					   ("UwU Archives", "*.uwu"),
+                       ("All Files", "*.*")])
+
+#def unzip_file():
+#	save_file = filedialog.askdirectory()
+#	save_file =C:\Users\%userprofile%\Desktop'
+#	with ZipFile(save_file, 'r') as zip:
+#		for file_name in file_names:
+#				zip.extractall(save_file)
+
+def unzip_file():
+  for file_name in file_names:
+#    if file_name.endswith('.zip', '.uwu'):
+      with ZipFile(file_name, 'r') as zip:
+        zip.extractall()
+
+
+def zip_file():
+	new_file = filedialog.asksaveasfilename(
+                initialfile='Untitled.zip',
+                defaultextension=".zip",
+                filetypes=[("ZIP Archives","*.zip"),
+					   ("UwU Archives", "*.uwu"),
+                       ("All Files", "*.*")])
+	with ZipFile(new_file,'w') as zip:
+			for file_name in file_names: 
+				zip.write(file_name) 
+
+
+
+Label(root, bg='black', fg='purple', text="maRAR", font="garamond 40 bold").pack(pady=10)
+Label(root, bg='black', fg='purple', text="zip and unzip files", font="futura 12 bold").pack(pady=2)
+
+Button(root, bg='#292929', fg='purple',text="Select File",command=select_file,font=14).pack(pady=10)
+
+frame = Frame()
+frame.pack(pady=20)
+
+zip_btn = Button(frame,text="UnZip All Files",command=unzip_file,relief="solid",bg="#292929", fg='purple',font=15)
+zip_btn.pack(side=RIGHT,padx=0)
+
+unzip_btn = Button(frame,text="Zip All Files",command=zip_file,relief="solid",bg="#292929", fg='purple',font=15)
+unzip_btn.pack()
+
+root.mainloop()
+
+#gewidmet an Mara
