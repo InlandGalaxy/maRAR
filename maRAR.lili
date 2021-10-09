@@ -2,10 +2,11 @@ from tkinter import *
 #from tkinter.filedialog import askopenfilenames 
 from tkinter import filedialog
 from zipfile import ZipFile 
+from tkinter import ttk
 
 root = Tk() 
 root.geometry('400x300')
-root.title("maRAR 1.0")
+root.title("maRAR 1.1")
 root.configure(bg='black')
 #root.wm_iconbitmap("ING_jk4.ico")
 
@@ -46,6 +47,10 @@ def zip_file():
 
 Label(root, bg='black', fg='purple', text="maRAR", font="garamond 40 bold").pack(pady=10)
 Label(root, bg='black', fg='purple', text="zip and unzip files", font="futura 12 bold").pack(pady=2)
+
+button1=ttk.Label(root, text="Mara<3", background='black', foreground='purple')
+button1.place(rely=1.0, relx=1.0, x=0, y=0, anchor=SE)
+
 
 Button(root, bg='#292929', fg='purple',text="Select File",command=select_file,font=14).pack(pady=10)
 
